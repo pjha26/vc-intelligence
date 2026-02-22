@@ -40,7 +40,7 @@ function HeaderContent() {
     };
 
     return (
-        <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0">
+        <header className="h-14 border-b border-slate-800 bg-slate-900 flex items-center justify-between px-6 shrink-0 z-10 shadow-sm relative">
             <div className="flex-1 flex max-w-2xl">
                 <form onSubmit={handleSearch} className="w-full relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-lg blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
@@ -62,12 +62,12 @@ function HeaderContent() {
             </div>
 
             <div className="flex items-center space-x-5 ml-6">
-                <button className="text-slate-400 hover:text-slate-700 transition-colors relative">
-                    <Bell className="w-4 h-4" />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                <button className="text-slate-400 hover:text-white transition-colors relative group">
+                    <Bell className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-rose-500 rounded-full border border-slate-900"></span>
                 </button>
-                <div className="h-4 w-px bg-slate-200"></div>
-                <button className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+                <div className="h-4 w-px bg-slate-800"></div>
+                <button className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">
                     <span>Help</span>
                 </button>
             </div>
@@ -78,8 +78,8 @@ function HeaderContent() {
 export function AppHeader() {
     return (
         <Suspense fallback={
-            <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0">
-                <div className="flex-1 max-w-2xl bg-slate-50 h-9 rounded border border-slate-200 animate-pulse"></div>
+            <header className="h-14 border-b border-slate-800 bg-slate-900 flex items-center justify-between px-6 shrink-0 z-10 relative">
+                <div className="flex-1 max-w-2xl bg-slate-800/50 h-9 rounded border border-slate-800 animate-pulse"></div>
             </header>
         }>
             <HeaderContent />
