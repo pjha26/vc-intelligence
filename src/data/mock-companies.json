@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "name": "Acme Robotics",
+        "url": "https://www.google.com/search?q=acme+robotics",
+        "industry": "DeepTech",
+        "stage": "Series A",
+        "location": "San Francisco, CA",
+        "description": "Building autonomous robotic arms for manufacturing."
+    },
+    {
+        "id": "2",
+        "name": "HealthNova",
+        "url": "https://www.google.com/search?q=healthnova",
+        "industry": "Healthcare",
+        "stage": "Seed",
+        "location": "New York, NY",
+        "description": "AI-powered diagnostic tools for radiology."
+    },
+    {
+        "id": "3",
+        "name": "FinScale",
+        "url": "https://www.google.com/search?q=finscale",
+        "industry": "FinTech",
+        "stage": "Series B",
+        "location": "London, UK",
+        "description": "B2B payment infrastructure for emerging markets."
+    },
+    {
+        "id": "4",
+        "name": "EcoPack",
+        "url": "https://www.google.com/search?q=ecopack",
+        "industry": "ClimateTech",
+        "stage": "Pre-Seed",
+        "location": "Berlin, Germany",
+        "description": "Biodegradable packaging alternatives from mushroom mycelium."
+    },
+    {
+        "id": "5",
+        "name": "DataSphere",
+        "url": "https://www.google.com/search?q=datasphere",
+        "industry": "SaaS",
+        "stage": "Series C",
+        "location": "Austin, TX",
+        "description": "Unified data observability platform for enterprise."
+    },
+    {
+        "id": "6",
+        "name": "QuantumLeap",
+        "url": "https://www.google.com/search?q=quantumleap",
+        "industry": "DeepTech",
+        "stage": "Seed",
+        "location": "Boston, MA",
+        "description": "Quantum algorithms for drug discovery."
+    },
+    {
+        "id": "7",
+        "name": "Logix",
+        "url": "https://www.google.com/search?q=logix",
+        "industry": "Logistics",
+        "stage": "Series A",
+        "location": "Chicago, IL",
+        "description": "Smart routing and fleet management software."
+    },
+    {
+        "id": "8",
+        "name": "Stripe",
+        "url": "https://stripe.com",
+        "industry": "FinTech",
+        "stage": "Public",
+        "location": "San Francisco, CA",
+        "description": "Financial infrastructure platform for the internet."
+    },
+    {
+        "id": "9",
+        "name": "Vercel",
+        "url": "https://vercel.com",
+        "industry": "DevTools",
+        "stage": "Series D",
+        "location": "Remote",
+        "description": "Frontend cloud platform for seamless deployment."
+    },
+    {
+        "id": "10",
+        "name": "Anthropic",
+        "url": "https://anthropic.com",
+        "industry": "AI",
+        "stage": "Series C",
+        "location": "San Francisco, CA",
+        "description": "AI safety research building safe and steerable AI systems."
+    }
+]
