@@ -1,5 +1,5 @@
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText, type CoreMessage } from 'ai';
+import { streamText } from 'ai';
 import mockCompanies from '@/data/mock-companies.json';
 
 const google = createGoogleGenerativeAI({
@@ -10,7 +10,7 @@ const google = createGoogleGenerativeAI({
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-    const { messages }: { messages: CoreMessage[] } = await req.json();
+    const { messages }: { messages: any[] } = await req.json();
 
     // Simple Context Injection RAG for the mock startup dataset
     const systemContext = `
