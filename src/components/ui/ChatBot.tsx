@@ -111,7 +111,7 @@ export default function ChatBot() {
                         placeholder="Ask about a startup or trend..."
                         className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
                         value={input || ""}
-                        onChange={handleInputChange}
+                        onChange={handleInputChange || (() => { })}
                     />
                     <button
                         type="submit"
