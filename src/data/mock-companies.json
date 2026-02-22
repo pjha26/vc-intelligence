@@ -88,5 +88,140 @@
         "stage": "Series C",
         "location": "San Francisco, CA",
         "description": "AI safety research building safe and steerable AI systems."
+    },
+    {
+        "id": "11",
+        "name": "Flipkart",
+        "url": "https://www.flipkart.com",
+        "industry": "E-commerce",
+        "stage": "Acquired",
+        "location": "Bengaluru, India",
+        "description": "Leading Indian e-commerce platform offering widespread goods."
+    },
+    {
+        "id": "12",
+        "name": "Zomato",
+        "url": "https://www.zomato.com",
+        "industry": "FoodTech",
+        "stage": "Public",
+        "location": "Gurugram, India",
+        "description": "Restaurant aggregator and food delivery startup."
+    },
+    {
+        "id": "13",
+        "name": "Paytm",
+        "url": "https://paytm.com",
+        "industry": "FinTech",
+        "stage": "Public",
+        "location": "Noida, India",
+        "description": "Digital payments and financial services company."
+    },
+    {
+        "id": "14",
+        "name": "Ola Cabs",
+        "url": "https://www.olacabs.com",
+        "industry": "Mobility",
+        "stage": "Series J",
+        "location": "Bengaluru, India",
+        "description": "Ride-sharing company offering mobility solutions."
+    },
+    {
+        "id": "15",
+        "name": "Swiggy",
+        "url": "https://www.swiggy.com",
+        "industry": "FoodTech",
+        "stage": "Series K",
+        "location": "Bengaluru, India",
+        "description": "On-demand food delivery platform bridging restaurants and consumers."
+    },
+    {
+        "id": "16",
+        "name": "Kite",
+        "url": "https://zerodha.com",
+        "industry": "FinTech",
+        "stage": "Bootstrapped",
+        "location": "Bengaluru, India",
+        "description": "Pioneering discount retail brokerage in India."
+    },
+    {
+        "id": "17",
+        "name": "Postman",
+        "url": "https://www.postman.com",
+        "industry": "DevTools",
+        "stage": "Series D",
+        "location": "Bengaluru, India",
+        "description": "API platform for building and using APIs."
+    },
+    {
+        "id": "18",
+        "name": "Razorpay",
+        "url": "https://razorpay.com",
+        "industry": "FinTech",
+        "stage": "Series F",
+        "location": "Bengaluru, India",
+        "description": "Payment gateway providing seamless solutions for Indian businesses."
+    },
+    {
+        "id": "19",
+        "name": "CRED",
+        "url": "https://cred.club",
+        "industry": "FinTech",
+        "stage": "Series F",
+        "location": "Bengaluru, India",
+        "description": "Members-only club that rewards individuals for timely credit card bill payments."
+    },
+    {
+        "id": "20",
+        "name": "Zoho",
+        "url": "https://www.zoho.com",
+        "industry": "SaaS",
+        "stage": "Bootstrapped",
+        "location": "Chennai, India",
+        "description": "Web-based business tools and information technology solutions."
+    },
+    {
+        "id": "21",
+        "name": "Freshworks",
+        "url": "https://www.freshworks.com",
+        "industry": "SaaS",
+        "stage": "Public",
+        "location": "Chennai, India",
+        "description": "Customer engagement software for businesses."
+    },
+    {
+        "id": "22",
+        "name": "Dream11",
+        "url": "https://www.dream11.com",
+        "industry": "Gaming",
+        "stage": "Series G",
+        "location": "Mumbai, India",
+        "description": "Fantasy sports platform allowing users to play fantasy cricket, hockey, football, kabaddi, and basketball."
+    },
+    {
+        "id": "23",
+        "name": "Lenskart",
+        "url": "https://www.lenskart.com",
+        "industry": "E-commerce",
+        "stage": "Series J",
+        "location": "Delhi, India",
+        "description": "Optical prescription eyewear retail chain."
+    },
+    {
+        "id": "24",
+        "name": "Oyo Rooms",
+        "url": "https://www.oyorooms.com",
+        "industry": "Hospitality",
+        "stage": "Series F",
+        "location": "Gurugram, India",
+        "description": "Multinational hospitality chain of leased and franchised hotels, homes and living spaces."
+    },
+    {
+        "id": "25",
+        "name": "Nykaa",
+        "url": "https://www.nykaa.com",
+        "industry": "E-commerce",
+        "stage": "Public",
+        "location": "Mumbai, India",
+        "description": "Lifestyle and beauty retail company."
     }
 ]

@@ -16,6 +16,7 @@ function CompaniesContent() {
     const [search, setSearch] = useState(initialQuery);
     const [stageFilter, setStageFilter] = useState("All");
     const [industryFilter, setIndustryFilter] = useState("All");
+    const [locationFilter, setLocationFilter] = useState("All");
     const [savedLists, setSavedLists] = useState<{ id: string, name: string }[]>([]);
 
     // Update search when URL param changes
@@ -30,6 +31,7 @@ function CompaniesContent() {
 
     const stages = ["All", ...Array.from(new Set(mockCompanies.map(c => c.stage)))];
     const industries = ["All", ...Array.from(new Set(mockCompanies.map(c => c.industry)))];
+    const locations = ["All", ...Array.from(new Set(mockCompanies.map(c => c.location)))].sort();
 
     const filteredCompanies = useMemo(() => {
         return mockCompanies.filter(c => {
@@ -37,16 +39,17 @@ function CompaniesContent() {
                 c.description.toLowerCase().includes(search.toLowerCase());
             const matchesStage = stageFilter === "All" || c.stage === stageFilter;
             const matchesIndustry = industryFilter === "All" || c.industry === industryFilter;
+            const matchesLocation = locationFilter === "All" || c.location === locationFilter;
 
-            return matchesSearch && matchesStage && matchesIndustry;
+            return matchesSearch && matchesStage && matchesIndustry && matchesLocation;
         });
-    }, [search, stageFilter, industryFilter]);
+    }, [search, stageFilter, industryFilter, locationFilter]);
 
     const handleSaveSearch = () => {
         const newSaved = {
             id: Date.now().toString(),
-            name: `Search: ${search || 'All'} | ${stageFilter} | ${industryFilter}`,
-            filters: { search, stageFilter, industryFilter }
+            name: `Search: ${search || 'All'} | ${stageFilter} | ${industryFilter} | Loc: ${locationFilter}`,
+            filters: { search, stageFilter, industryFilter, locationFilter }
         };
         const existing = JSON.parse(localStorage.getItem("vc_saved_searches") || "[]");
         localStorage.setItem("vc_saved_searches", JSON.stringify([...existing, newSaved]));
@@ -104,12 +107,23 @@ function CompaniesContent() {
                         {stages.map(s => <option key={s} value={s}>{s}</option>)}
                     </select>
                 </div>
-                {(search || industryFilter !== "All" || stageFilter !== "All") && (
+                <div className="flex items-center gap-2">
+                    <span className="text-xs font-medium text-slate-500">Location:</span>
+                    <select
+                        className="py-1.5 pl-2 pr-6 bg-white border border-slate-200 rounded text-xs focus:border-indigo-500 outline-none cursor-pointer max-w-[140px] truncate"
+                        value={locationFilter}
+                        onChange={(e) => setLocationFilter(e.target.value)}
+                    >
+                        {locations.map(l => <option key={l} value={l}>{l.split(',')[0]}</option>)}
+                    </select>
+                </div>
+                {(search || industryFilter !== "All" || stageFilter !== "All" || locationFilter !== "All") && (
                     <button
                         onClick={() => {
                             setSearch("");
                             setStageFilter("All");
                             setIndustryFilter("All");
+                            setLocationFilter("All");
                         }}
                         className="text-xs text-indigo-600 font-medium hover:text-indigo-700 ml-auto px-2"
                     >
