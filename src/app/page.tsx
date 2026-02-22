@@ -1,7 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Sparkles, ArrowRight, Building2, Bookmark, Activity, Search, Bot } from "lucide-react";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        router.push("/companies?focus=true");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [router]);
+
   return (
     <div className="h-full flex flex-col bg-slate-950 text-slate-100 overflow-hidden relative">
       {/* Radiant Background Effects */}
@@ -32,11 +50,11 @@ export default function Home() {
                 Start Exploring
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl font-semibold backdrop-blur-md transition-all flex items-center gap-2">
+              <Link href="/companies?focus=true" className="px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl font-semibold backdrop-blur-md transition-all flex items-center gap-2">
                 <Search className="w-4 h-4 text-slate-400" />
                 Global Search
                 <span className="ml-2 px-2 py-0.5 bg-white/10 rounded text-[10px] text-slate-400 border border-white/5">⌘K</span>
-              </button>
+              </Link>
             </div>
           </div>
 

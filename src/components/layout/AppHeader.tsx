@@ -1,12 +1,36 @@
 "use client";
 
 import { Search, Bell, Command, ChevronDown } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export function AppHeader() {
+function HeaderContent() {
     const [query, setQuery] = useState("");
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        // Handle autofocus from landing page redirect
+        if (searchParams.get("focus") === "true") {
+            inputRef.current?.focus();
+            // remove focus param from url without refreshing
+            const url = new URL(window.location.href);
+            url.searchParams.delete("focus");
+            window.history.replaceState({}, "", url.toString());
+        }
+
+        // Global Cmd+K within the dashboard
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                inputRef.current?.focus();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [searchParams]);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -21,6 +45,7 @@ export function AppHeader() {
                 <form onSubmit={handleSearch} className="w-full relative group">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
                     <input
+                        ref={inputRef}
                         type="text"
                         placeholder="Search for companies, investors, or signals..."
                         className="w-full pl-10 pr-12 py-1.5 bg-slate-50 border border-slate-200 rounded text-sm focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all placeholder:text-slate-400"
@@ -46,5 +71,17 @@ export function AppHeader() {
                 </button>
             </div>
         </header>
+    );
+}
+
+export function AppHeader() {
+    return (
+        <Suspense fallback={
+            <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0">
+                <div className="flex-1 max-w-2xl bg-slate-50 h-9 rounded border border-slate-200 animate-pulse"></div>
+            </header>
+        }>
+            <HeaderContent />
+        </Suspense>
     );
 }
