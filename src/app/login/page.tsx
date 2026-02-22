@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Sparkles, ArrowRight, Building2, Bookmark, Activity, Search, Bot } from "lucide-react";
 

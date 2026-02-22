@@ -43,10 +43,35 @@ export default function Home() {
         <div className="w-full max-w-5xl mx-auto space-y-16">
 
           {/* Hero Section */}
-          <div className="text-center space-y-6">
-            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4 shadow-2xl">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
-              <span className="text-xs font-semibold tracking-wider uppercase text-indigo-300">Acme Capital Intelligence</span>
+          <div className="text-center space-y-6 flex flex-col items-center">
+
+            {/* Drishti Logo */}
+            <div className="flex flex-col items-center justify-center space-y-5 mb-2 relative">
+              {/* Outer glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl"></div>
+
+              <div className="relative flex items-center justify-center w-20 h-20">
+                {/* Orbital rings */}
+                <div className="absolute inset-0 rounded-full border-t-2 border-r-2 border-indigo-400/40 animate-[spin_8s_linear_infinite]"></div>
+                <div className="absolute inset-2 rounded-full border-b-2 border-l-2 border-purple-400/40 animate-[spin_12s_linear_infinite_reverse]"></div>
+                <div className="absolute inset-4 rounded-full border border-fuchsia-400/30 border-dashed animate-[spin_20s_linear_infinite]"></div>
+
+                {/* Hindi/Sanskrit focal point */}
+                <div className="absolute inset-0 flex items-center justify-center text-4xl font-serif text-indigo-100 drop-shadow-[0_0_15px_rgba(129,140,248,0.8)]">
+                  दृ
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center space-y-1 relative z-10">
+                <h2 className="text-2xl font-extrabold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-white to-indigo-200 uppercase font-sans">
+                  Drishti
+                </h2>
+                <div className="flex items-center gap-2 opacity-80">
+                  <div className="h-px w-6 bg-gradient-to-r from-transparent to-indigo-500"></div>
+                  <span className="text-[9px] font-bold tracking-[0.3em] text-indigo-300 uppercase">Intelligence</span>
+                  <div className="h-px w-6 bg-gradient-to-l from-transparent to-indigo-500"></div>
+                </div>
+              </div>
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-slate-400 drop-shadow-sm">
               Discover the Future.
