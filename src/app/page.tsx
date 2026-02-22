@@ -91,8 +91,8 @@ export default function Home() {
                 Global Search
                 <span className="ml-2 px-2 py-0.5 bg-white/10 rounded text-[10px] text-slate-400 border border-white/5">⌘K</span>
               </Link>
-              <button className="px-8 py-3.5 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 hover:from-purple-500/30 hover:to-fuchsia-500/30 text-white border border-purple-500/30 hover:border-fuchsia-500/50 rounded-xl font-semibold backdrop-blur-md transition-all flex items-center gap-2">
-                <Bot className="w-4 h-4 text-purple-300" />
+              <button className="px-6 py-3 bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/5 rounded-xl font-medium transition-all flex items-center gap-2">
+                <Bot className="w-4 h-4" />
                 Book Demo
               </button>
             </div>

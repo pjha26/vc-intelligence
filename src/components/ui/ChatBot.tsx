@@ -18,7 +18,7 @@ export default function ChatBot() {
                 content: "Hello! I'm the Drishti Intelligence Engine. How can I help you discover the future of startups?",
             }
         ]
-    });
+    } as any) as any;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
