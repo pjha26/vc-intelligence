@@ -57,7 +57,7 @@ function CompaniesContent() {
     };
 
     return (
-        <div className="h-full flex flex-col">
+        <div className="flex flex-col min-h-full">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200 shrink-0">
                 <div>
                     <h1 className="text-xl font-bold text-slate-900 tracking-tight">Companies</h1>
@@ -75,7 +75,7 @@ function CompaniesContent() {
             </div>
 
             {/* Top Filters Bar */}
-            <div className="flex items-center gap-3 py-3 border-b border-slate-200 bg-slate-50/50 shrink-0 px-2">
+            <div className="flex items-center gap-3 py-3 border-b border-rose-100/60 bg-gradient-to-r from-rose-50/30 to-transparent shrink-0 px-2 rounded-t-xl mt-4">
                 <div className="relative w-64">
                     <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
@@ -133,9 +133,9 @@ function CompaniesContent() {
             </div>
 
             {/* Dense Data Grid */}
-            <div className="flex-1 overflow-auto bg-white">
+            <div className="flex-1 bg-gradient-to-br from-white via-rose-50/40 to-orange-50/20 rounded-b-xl shadow-sm border border-t-0 border-rose-100/50">
                 <table className="w-full text-left border-collapse whitespace-nowrap">
-                    <thead className="sticky top-0 z-10 bg-white border-b border-slate-200 shadow-sm">
+                    <thead className="bg-white/60 backdrop-blur-md border-b border-rose-200/60 shadow-sm">
                         <tr className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                             <th className="px-4 py-2.5 w-6"></th>
                             <th className="px-4 py-2.5">Company</th>
@@ -147,8 +147,8 @@ function CompaniesContent() {
                     </thead>
                     <tbody className="divide-y divide-slate-100 text-sm">
                         {filteredCompanies.map((company, idx) => (
-                            <tr key={company.id} className="group hover:bg-slate-50/80 transition-colors">
-                                <td className="px-4 py-2 text-xs text-slate-400 font-medium w-6 text-center">{idx + 1}</td>
+                            <tr key={company.id} className="group hover:bg-rose-50/60 transition-colors">
+                                <td className="px-4 py-2 text-xs text-rose-400/80 font-medium w-6 text-center">{idx + 1}</td>
                                 <td className="px-4 py-2 flex items-center gap-2">
                                     <div className="w-6 h-6 rounded bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold text-[10px] shrink-0 border border-indigo-100">
                                         {company.name.charAt(0)}
