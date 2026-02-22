@@ -101,7 +101,7 @@ export default function ChatBot() {
 
             {/* Input Area */}
             <div className="p-3 bg-slate-800/80 border-t border-slate-700/50 shrink-0">
-                <form onSubmit={handleSubmit} className="relative flex items-center">
+                <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e); }} className="relative flex items-center">
                     <input
                         type="text"
                         placeholder="Ask about a startup or trend..."
