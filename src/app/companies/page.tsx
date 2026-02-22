@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { Suspense, useState, useMemo, useEffect } from "react";
 import mockCompanies from "@/data/mock-companies.json";
 import { Search, SlidersHorizontal, ChevronRight, BookmarkPlus } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Company = typeof mockCompanies[0];
 
-export default function CompaniesPage() {
+function CompaniesContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get("q") || "";
@@ -189,5 +189,13 @@ export default function CompaniesPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CompaniesPage() {
+    return (
+        <Suspense fallback={<div className="p-8 text-center">Loading companies...</div>}>
+            <CompaniesContent />
+        </Suspense>
     );
 }
