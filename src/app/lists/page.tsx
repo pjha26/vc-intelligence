@@ -119,36 +119,41 @@ export default function ListsPage() {
                                                 </tr>
                                             </thead>
                                             <tbody className="divide-y divide-slate-100 text-sm">
-                                                {companies.length === 0 ? (
+                                                {companies.length === 0 && (
                                                     <tr>
-                                                        <td colSpan={5} className="p-6 text-center text-xs text-slate-500">List is empty.</td>
+                                                        <td colSpan={5} className="p-8 text-center bg-slate-50/30">
+                                                            <div className="flex flex-col items-center justify-center space-y-2">
+                                                                <ListIcon className="w-6 h-6 text-slate-300" />
+                                                                <p className="text-sm font-medium text-slate-600">This list is empty</p>
+                                                                <p className="text-xs text-slate-400">Add companies from their profile page.</p>
+                                                            </div>
+                                                        </td>
                                                     </tr>
-                                                ) : (
-                                                    companies.map((c, idx) => (
-                                                        <tr key={c.id} className="hover:bg-slate-50/80 transition-colors group">
-                                                            <td className="px-4 py-2 text-xs text-slate-400 font-medium w-6 text-center">{idx + 1}</td>
-                                                            <td className="px-4 py-2 flex items-center gap-2">
-                                                                <Link href={`/companies/${c.id}`} className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors text-xs">
-                                                                    {c.name}
-                                                                </Link>
-                                                            </td>
-                                                            <td className="px-4 py-2">
-                                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
-                                                                    {c.industry}
-                                                                </span>
-                                                            </td>
-                                                            <td className="px-4 py-2 text-slate-600 text-xs">{c.stage}</td>
-                                                            <td className="px-4 py-2 text-right">
-                                                                <button
-                                                                    onClick={() => removeFromList(list.id, c.id)}
-                                                                    className="text-[11px] text-slate-400 hover:text-red-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity"
-                                                                >
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    ))
                                                 )}
+                                                {companies.map((c, idx) => (
+                                                    <tr key={c.id} className="hover:bg-slate-50/80 transition-colors group">
+                                                        <td className="px-4 py-2 text-xs text-slate-400 font-medium w-6 text-center">{idx + 1}</td>
+                                                        <td className="px-4 py-2 flex items-center gap-2">
+                                                            <Link href={`/companies/${c.id}`} className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors text-xs">
+                                                                {c.name}
+                                                            </Link>
+                                                        </td>
+                                                        <td className="px-4 py-2">
+                                                            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                                                                {c.industry}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-4 py-2 text-slate-600 text-xs">{c.stage}</td>
+                                                        <td className="px-4 py-2 text-right">
+                                                            <button
+                                                                onClick={() => removeFromList(list.id, c.id)}
+                                                                className="text-[11px] text-slate-400 hover:text-red-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>

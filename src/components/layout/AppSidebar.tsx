@@ -5,7 +5,7 @@ export function AppSidebar() {
   return (
     <aside className="w-60 border-r border-slate-200 bg-white min-h-screen flex flex-col text-sm">
       {/* Workspace Selector */}
-      <div className="h-14 flex items-center px-4 border-b border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
+      <Link href="/" className="h-14 flex items-center px-4 border-b border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
         <div className="flex-1 flex items-center space-x-3">
           <div className="w-7 h-7 bg-indigo-600 rounded flex items-center justify-center shadow-sm">
             <span className="text-white text-xs font-bold leading-none">VC</span>
@@ -16,7 +16,7 @@ export function AppSidebar() {
           </div>
         </div>
         <ChevronsUpDown className="w-4 h-4 text-slate-400" />
-      </div>
+      </Link>
 
       {/* Main Navigation */}
       <div className="p-3 flex-1 overflow-y-auto">
