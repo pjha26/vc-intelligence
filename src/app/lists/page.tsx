@@ -60,74 +60,103 @@ export default function ListsPage() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto space-y-6">
-            <div className="flex items-center justify-between">
+        <div className="h-full flex flex-col bg-slate-50/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white shrink-0">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 tracking-tight">My Lists</h1>
-                    <p className="text-slate-500 mt-1">Manage and export your custom company lists.</p>
+                    <h1 className="text-xl font-bold text-slate-900 tracking-tight">My Lists</h1>
+                    <p className="text-sm text-slate-500 mt-0.5">Manage and export your custom company lists.</p>
                 </div>
             </div>
 
-            <div className="grid gap-6">
-                {lists.length === 0 ? (
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-12 text-center flex flex-col items-center justify-center space-y-4">
-                        <div className="w-16 h-16 bg-slate-50 rounded-full border border-slate-100 flex items-center justify-center">
-                            <ListIcon className="w-6 h-6 text-slate-300" />
+            <div className="flex-1 overflow-auto p-6">
+                <div className="max-w-5xl mx-auto space-y-6">
+                    {lists.length === 0 ? (
+                        <div className="bg-white rounded border border-slate-200 shadow-sm p-12 text-center flex flex-col items-center justify-center space-y-3">
+                            <div className="w-12 h-12 bg-slate-50 rounded-full border border-slate-100 flex items-center justify-center mb-1">
+                                <ListIcon className="w-5 h-5 text-slate-300" />
+                            </div>
+                            <p className="font-medium text-slate-700 text-sm">No lists created yet</p>
+                            <p className="text-xs text-slate-500">Save a company to a list from its profile page.</p>
+                            <Link href="/companies" className="px-4 py-1.5 mt-2 bg-indigo-50 text-indigo-600 border border-indigo-100 rounded text-xs font-semibold hover:bg-indigo-100 transition-colors">
+                                Browse Companies
+                            </Link>
                         </div>
-                        <div>
-                            <p className="font-medium text-slate-700">No lists created yet</p>
-                            <p className="text-sm text-slate-500 mt-1">Go to a company profile to create your first list.</p>
-                        </div>
-                        <Link href="/companies" className="px-4 py-2 mt-4 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors">
-                            Browse Companies
-                        </Link>
-                    </div>
-                ) : (
-                    lists.map(list => {
-                        const itemIds = listItems[list.id] || [];
-                        const companies = mockCompanies.filter(c => itemIds.includes(c.id));
+                    ) : (
+                        lists.map(list => {
+                            const itemIds = listItems[list.id] || [];
+                            const companies = mockCompanies.filter(c => itemIds.includes(c.id));
 
-                        return (
-                            <div key={list.id} className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-                                <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
-                                    <h2 className="font-semibold text-slate-900">{list.name} <span className="text-slate-500 text-sm font-normal ml-2">({companies.length} companies)</span></h2>
-                                    <div className="flex items-center gap-2">
-                                        <button onClick={() => handleExport(list.id, 'csv')} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md text-sm font-medium hover:bg-slate-50 text-slate-700">
-                                            <Download className="w-4 h-4" /> CSV
-                                        </button>
-                                        <button onClick={() => handleExport(list.id, 'json')} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 shadow-sm rounded-md text-sm font-medium hover:bg-slate-50 text-slate-700">
-                                            <Download className="w-4 h-4" /> JSON
-                                        </button>
-                                        <button onClick={() => removeList(list.id)} className="p-1.5 text-slate-400 hover:text-red-600 transition-colors ml-2">
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
+                            return (
+                                <div key={list.id} className="bg-white rounded border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+                                    <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between bg-slate-50/50">
+                                        <div className="flex items-center gap-3">
+                                            <h2 className="text-sm font-semibold text-slate-900">{list.name}</h2>
+                                            <span className="px-2 py-0.5 bg-slate-200 text-slate-600 rounded text-[10px] font-bold">{companies.length}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <button onClick={() => handleExport(list.id, 'csv')} className="flex items-center gap-1.5 px-2 py-1 bg-white border border-slate-200 shadow-sm rounded text-[11px] font-medium hover:bg-slate-50 text-slate-600 transition-colors">
+                                                <Download className="w-3 h-3 text-slate-400" /> CSV
+                                            </button>
+                                            <button onClick={() => handleExport(list.id, 'json')} className="flex items-center gap-1.5 px-2 py-1 bg-white border border-slate-200 shadow-sm rounded text-[11px] font-medium hover:bg-slate-50 text-slate-600 transition-colors">
+                                                <Download className="w-3 h-3 text-slate-400" /> JSON
+                                            </button>
+                                            <div className="w-px h-4 bg-slate-200 mx-1"></div>
+                                            <button onClick={() => removeList(list.id)} className="p-1 text-slate-400 hover:text-red-600 transition-colors">
+                                                <Trash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse whitespace-nowrap">
+                                            <thead className="bg-slate-50/30">
+                                                <tr className="text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-100">
+                                                    <th className="px-4 py-2 w-6"></th>
+                                                    <th className="px-4 py-2">Company</th>
+                                                    <th className="px-4 py-2">Industry</th>
+                                                    <th className="px-4 py-2">Stage</th>
+                                                    <th className="px-4 py-2 w-10 text-right">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-slate-100 text-sm">
+                                                {companies.length === 0 ? (
+                                                    <tr>
+                                                        <td colSpan={5} className="p-6 text-center text-xs text-slate-500">List is empty.</td>
+                                                    </tr>
+                                                ) : (
+                                                    companies.map((c, idx) => (
+                                                        <tr key={c.id} className="hover:bg-slate-50/80 transition-colors group">
+                                                            <td className="px-4 py-2 text-xs text-slate-400 font-medium w-6 text-center">{idx + 1}</td>
+                                                            <td className="px-4 py-2 flex items-center gap-2">
+                                                                <Link href={`/companies/${c.id}`} className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors text-xs">
+                                                                    {c.name}
+                                                                </Link>
+                                                            </td>
+                                                            <td className="px-4 py-2">
+                                                                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                                                                    {c.industry}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-4 py-2 text-slate-600 text-xs">{c.stage}</td>
+                                                            <td className="px-4 py-2 text-right">
+                                                                <button
+                                                                    onClick={() => removeFromList(list.id, c.id)}
+                                                                    className="text-[11px] text-slate-400 hover:text-red-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                                                                >
+                                                                    Remove
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    ))
+                                                )}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-
-                                <div className="divide-y divide-slate-100">
-                                    {companies.length === 0 ? (
-                                        <div className="p-6 text-center text-sm text-slate-500">List is empty.</div>
-                                    ) : (
-                                        companies.map(c => (
-                                            <div key={c.id} className="p-4 flex items-center justify-between hover:bg-slate-50/50">
-                                                <div className="flex flex-col">
-                                                    <Link href={`/companies/${c.id}`} className="font-medium text-slate-900 hover:text-blue-600 transition-colors">{c.name}</Link>
-                                                    <span className="text-xs text-slate-500">{c.industry} &bull; {c.stage}</span>
-                                                </div>
-                                                <button
-                                                    onClick={() => removeFromList(list.id, c.id)}
-                                                    className="pt-1 px-2 text-xs text-slate-400 hover:text-red-500 font-medium"
-                                                >
-                                                    Remove
-                                                </button>
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
-                            </div>
-                        );
-                    })
-                )}
+                            );
+                        })
+                    )}
+                </div>
             </div>
         </div>
     );
