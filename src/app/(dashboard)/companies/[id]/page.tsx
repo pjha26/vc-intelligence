@@ -17,6 +17,7 @@ export default function CompanyProfile() {
     const [enriching, setEnriching] = useState(false);
     const [enrichedData, setEnrichedData] = useState<any>(null);
     const [enrichError, setEnrichError] = useState("");
+    const [enrichSuccess, setEnrichSuccess] = useState(false);
 
     // Lists state
     const [showLists, setShowLists] = useState(false);
@@ -56,6 +57,9 @@ export default function CompanyProfile() {
 
             setEnrichedData(data);
             localStorage.setItem(`enriched_${id}`, JSON.stringify(data));
+
+            setEnrichSuccess(true);
+            setTimeout(() => setEnrichSuccess(false), 4000);
         } catch (err: any) {
             setEnrichError(err.message || "An unexpected error occurred during enrichment.");
         } finally {
@@ -147,6 +151,14 @@ export default function CompanyProfile() {
                         )}
                     </div>
                 </div>
+
+                {/* Floating Success Toast */}
+                {enrichSuccess && (
+                    <div className="fixed top-24 right-8 bg-emerald-500 text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-2 text-sm font-semibold animate-in slide-in-from-top-4 fade-in duration-300 z-50">
+                        <Check className="w-5 h-5 text-white/90" />
+                        Profile Successfully Enriched
+                    </div>
+                )}
             </div>
 
             {/* Profile Header Block */}

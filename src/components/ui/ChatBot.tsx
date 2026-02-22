@@ -22,11 +22,12 @@ export default function ChatBot() {
     } as any) as any;
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
     };
 
     useEffect(() => {
         if (isOpen) {
+            // "auto" prevents the scroll lock from stream interruptions
             scrollToBottom();
         }
     }, [messages, isOpen]);
@@ -72,7 +73,7 @@ export default function ChatBot() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-br from-slate-900 via-rose-950/20 to-slate-900/80 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                 {messages.map((msg: any) => (
                     <div
                         key={msg.id}
