@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Sparkles, ArrowRight, Building2, Bookmark, Activity, Search, Bot } from "lucide-react";
+import ChatBot from "@/components/ui/ChatBot";
 
 export default function Home() {
   const router = useRouter();
@@ -80,7 +81,7 @@ export default function Home() {
               Your AI-driven operating system for venture intelligence. Surface hidden signals, enrich company profiles instantly, and build your conviction faster.
             </p>
 
-            <div className="pt-8 flex items-center justify-center gap-4">
+            <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
               <Link href="/companies" className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold shadow-[0_0_40px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_0_60px_-10px_rgba(79,70,229,0.7)] transition-all flex items-center gap-2 group">
                 Start Exploring
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -90,6 +91,10 @@ export default function Home() {
                 Global Search
                 <span className="ml-2 px-2 py-0.5 bg-white/10 rounded text-[10px] text-slate-400 border border-white/5">⌘K</span>
               </Link>
+              <button className="px-8 py-3.5 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 hover:from-purple-500/30 hover:to-fuchsia-500/30 text-white border border-purple-500/30 hover:border-fuchsia-500/50 rounded-xl font-semibold backdrop-blur-md transition-all flex items-center gap-2">
+                <Bot className="w-4 h-4 text-purple-300" />
+                Book Demo
+              </button>
             </div>
           </div>
 
@@ -136,6 +141,8 @@ export default function Home() {
 
         </div>
       </div>
+
+      <ChatBot />
     </div>
   );
 }
