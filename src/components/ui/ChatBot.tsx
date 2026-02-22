@@ -3,23 +3,22 @@
 import { useState, useRef, useEffect } from "react";
 import { Bot, X, Send, Sparkles, ChevronDown } from "lucide-react";
 
-type Message = {
-    id: string;
-    text: string;
-    sender: "bot" | "user";
-};
+import { useChat } from "@ai-sdk/react";
 
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: "1",
-            text: "Hello! I'm the Drishti Intelligence Engine. How can I help you discover the future of startups?",
-            sender: "bot",
-        }
-    ]);
-    const [input, setInput] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+        api: '/api/chat',
+        initialMessages: [
+            {
+                id: "1",
+                role: "assistant",
+                content: "Hello! I'm the Drishti Intelligence Engine. How can I help you discover the future of startups?",
+            }
+        ]
+    });
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -30,30 +29,6 @@ export default function ChatBot() {
             scrollToBottom();
         }
     }, [messages, isOpen]);
-
-    const handleSend = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!input.trim()) return;
-
-        const newUserMessage: Message = {
-            id: Date.now().toString(),
-            text: input.trim(),
-            sender: "user"
-        };
-
-        setMessages(prev => [...prev, newUserMessage]);
-        setInput("");
-
-        // Simulate AI response
-        setTimeout(() => {
-            const botResponse: Message = {
-                id: (Date.now() + 1).toString(),
-                text: "I'm currently a UI demonstration on this landing page, but in the full product, I can instantly surface signals, enrich companies, and alert you to market shifts. Care to try the global search instead?",
-                sender: "bot"
-            };
-            setMessages(prev => [...prev, botResponse]);
-        }, 1000);
-    };
 
     if (!isOpen) {
         return (
@@ -100,34 +75,43 @@ export default function ChatBot() {
                 {messages.map((message) => (
                     <div
                         key={message.id}
-                        className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+                        className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                     >
                         <div
-                            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${message.sender === "user"
-                                    ? "bg-indigo-600 text-white rounded-br-sm"
-                                    : "bg-slate-800 text-slate-200 border border-slate-700/50 rounded-bl-sm"
+                            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${message.role === "user"
+                                ? "bg-indigo-600 text-white rounded-br-sm"
+                                : "bg-slate-800 text-slate-200 border border-slate-700/50 rounded-bl-sm"
                                 }`}
                         >
-                            {message.text}
+                            {message.content}
                         </div>
                     </div>
                 ))}
+                {isLoading && messages[messages.length - 1]?.role === "user" && (
+                    <div className="flex justify-start">
+                        <div className="bg-slate-800 text-slate-200 border border-slate-700/50 rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                            <span className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce"></span>
+                        </div>
+                    </div>
+                )}
                 <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area */}
             <div className="p-3 bg-slate-800/80 border-t border-slate-700/50 shrink-0">
-                <form onSubmit={handleSend} className="relative flex items-center">
+                <form onSubmit={handleSubmit} className="relative flex items-center">
                     <input
                         type="text"
                         placeholder="Ask about a startup or trend..."
                         className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
                         value={input}
-                        onChange={(e) => setInput(e.target.value)}
+                        onChange={handleInputChange}
                     />
                     <button
                         type="submit"
-                        disabled={!input.trim()}
+                        disabled={!input.trim() || isLoading}
                         className="absolute right-2 p-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg transition-colors flex items-center justify-center"
                     >
                         <Send className="w-4 h-4 -ml-0.5" />
