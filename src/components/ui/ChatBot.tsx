@@ -10,7 +10,7 @@ export default function ChatBot() {
     const [localInput, setLocalInput] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat({
+    const { messages, append, isLoading } = useChat({
         api: '/api/chat',
         initialMessages: [
             {
@@ -107,30 +107,23 @@ export default function ChatBot() {
                     e.preventDefault();
                     if (!localInput?.trim() || isLoading) return;
 
-                    // The standard `handleSubmit` from Vercel AI SDK expects an event
-                    // we need to make sure the sdk reads our localInput, so we trigger handleInputChange
-                    // manually with a fake event before submitting.
-                    if (typeof setInput === 'function') {
-                        setInput(localInput);
-                    }
-
-                    if (typeof handleSubmit === 'function') {
-                        handleSubmit(e);
-                    }
-
+                    // Directly append to avoid React state race-conditions with setInput/handleSubmit
+                    const messageText = localInput;
                     setLocalInput(""); // instantly clear local UI
+
+                    if (typeof append === 'function') {
+                        append({
+                            role: 'user',
+                            content: messageText
+                        });
+                    }
                 }} className="relative flex items-center">
                     <input
                         type="text"
                         placeholder="Ask about a startup or trend..."
                         className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
                         value={localInput}
-                        onChange={(e) => {
-                            setLocalInput(e.target.value);
-                            if (typeof handleInputChange === 'function') {
-                                handleInputChange(e);
-                            }
-                        }}
+                        onChange={(e) => setLocalInput(e.target.value)}
                     />
                     <button
                         type="submit"

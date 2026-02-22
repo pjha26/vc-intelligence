@@ -33,5 +33,5 @@ ${JSON.stringify(mockCompanies, null, 2)}
         messages,
     });
 
-    return result.toTextStreamResponse();
+    return result.toDataStreamResponse();
 }
