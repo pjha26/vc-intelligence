@@ -105,10 +105,19 @@ export default function ChatBot() {
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     if (!localInput?.trim() || isLoading) return;
-                    setLocalInput(""); // instantly clear exactly like native input
+
+                    // The standard `handleSubmit` from Vercel AI SDK expects an event
+                    // we need to make sure the sdk reads our localInput, so we trigger handleInputChange
+                    // manually with a fake event before submitting.
+                    if (typeof setInput === 'function') {
+                        setInput(localInput);
+                    }
+
                     if (typeof handleSubmit === 'function') {
                         handleSubmit(e);
                     }
+
+                    setLocalInput(""); // instantly clear local UI
                 }} className="relative flex items-center">
                     <input
                         type="text"
