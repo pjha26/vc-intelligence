@@ -22,6 +22,16 @@ export default function Home() {
 
   return (
     <div className="h-full flex flex-col bg-slate-950 text-slate-100 overflow-hidden relative">
+      {/* Top Auth Navigation */}
+      <div className="absolute top-0 inset-x-0 p-6 flex items-center justify-end z-30 gap-4">
+        <Link href="/login" className="text-sm font-semibold text-slate-300 hover:text-white transition-colors">
+          Log in
+        </Link>
+        <Link href="/signup" className="px-4 py-2 bg-white/10 hover:bg-white/15 border border-white/5 rounded-full text-sm font-semibold text-white backdrop-blur-md transition-all">
+          Sign up
+        </Link>
+      </div>
+
       {/* Radiant Background Effects */}
       <div className="absolute top-0 inset-x-0 h-[500px] pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/20 via-purple-500/5 to-transparent"></div>
@@ -29,7 +39,7 @@ export default function Home() {
         <div className="absolute top-[-10%] right-1/4 w-[500px] h-[500px] bg-fuchsia-600/20 rounded-full blur-[100px] mix-blend-screen"></div>
       </div>
 
-      <div className="flex-1 overflow-auto relative z-10 p-8 md:p-12 lg:p-16 flex flex-col items-center justify-center min-h-0">
+      <div className="flex-1 overflow-auto relative z-10 p-8 md:p-12 lg:p-16 flex flex-col items-center justify-center min-h-0 pt-24">
         <div className="w-full max-w-5xl mx-auto space-y-16">
 
           {/* Hero Section */}
