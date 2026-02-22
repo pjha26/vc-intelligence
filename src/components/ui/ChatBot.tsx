@@ -7,9 +7,10 @@ import { useChat } from "@ai-sdk/react";
 
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
+    const [localInput, setLocalInput] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    const { messages, append, isLoading } = useChat({
         api: '/api/chat',
         initialMessages: [
             {
@@ -22,6 +23,19 @@ export default function ChatBot() {
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleManualSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!localInput.trim() || isLoading) return;
+
+        const messageContent = localInput.trim();
+        setLocalInput(""); // Clear immediately for UX
+
+        await append({
+            role: "user",
+            content: messageContent,
+        });
     };
 
     useEffect(() => {
@@ -101,17 +115,17 @@ export default function ChatBot() {
 
             {/* Input Area */}
             <div className="p-3 bg-slate-800/80 border-t border-slate-700/50 shrink-0">
-                <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e); }} className="relative flex items-center">
+                <form onSubmit={handleManualSubmit} className="relative flex items-center">
                     <input
                         type="text"
                         placeholder="Ask about a startup or trend..."
                         className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
-                        value={input}
-                        onChange={handleInputChange}
+                        value={localInput}
+                        onChange={(e) => setLocalInput(e.target.value)}
                     />
                     <button
                         type="submit"
-                        disabled={!input?.trim() || isLoading}
+                        disabled={!localInput.trim() || isLoading}
                         className="absolute right-2 p-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg transition-colors flex items-center justify-center"
                     >
                         <Send className="w-4 h-4 -ml-0.5" />
