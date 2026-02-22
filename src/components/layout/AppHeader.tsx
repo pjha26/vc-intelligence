@@ -43,17 +43,18 @@ function HeaderContent() {
         <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0">
             <div className="flex-1 flex max-w-2xl">
                 <form onSubmit={handleSearch} className="w-full relative group">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-lg blur opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-400 z-10 transition-colors" />
                     <input
                         ref={inputRef}
                         type="text"
                         placeholder="Search for companies, investors, or signals..."
-                        className="w-full pl-10 pr-12 py-1.5 bg-slate-50 border border-slate-200 rounded text-sm focus:bg-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all placeholder:text-slate-400"
+                        className="w-full pl-10 pr-12 py-2 bg-slate-900 border border-slate-700 rounded-lg text-sm text-white focus:bg-slate-800 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-500 shadow-inner relative z-10"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                        <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-white text-[10px] font-medium text-slate-400">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
+                        <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-600 bg-slate-800 text-[10px] font-medium text-slate-300">
                             <Command className="w-3 h-3" /> K
                         </kbd>
                     </div>
