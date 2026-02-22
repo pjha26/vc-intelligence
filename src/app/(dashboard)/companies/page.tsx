@@ -57,7 +57,7 @@ function CompaniesContent() {
     };
 
     return (
-        <div className="flex flex-col min-h-full">
+        <div className="h-full flex flex-col">
             <div className="flex items-center justify-between pb-4 border-b border-slate-200 shrink-0">
                 <div>
                     <h1 className="text-xl font-bold text-slate-900 tracking-tight">Companies</h1>
@@ -75,22 +75,22 @@ function CompaniesContent() {
             </div>
 
             {/* Top Filters Bar */}
-            <div className="flex items-center gap-3 py-3 border-b border-rose-100/60 bg-gradient-to-r from-rose-50/30 to-transparent shrink-0 px-2 rounded-t-xl mt-4">
+            <div className="flex items-center gap-3 py-3 border-b border-slate-800 bg-slate-900 shrink-0 px-3 rounded-t-xl mt-4 shadow-md z-1 relative">
                 <div className="relative w-64">
-                    <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500" />
                     <input
                         type="text"
                         placeholder="Keyword search..."
-                        className="w-full pl-8 pr-3 py-1.5 bg-white border border-slate-200 rounded text-xs focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
+                        className="w-full pl-8 pr-3 py-1.5 bg-slate-800 border border-slate-700 rounded text-xs focus:border-indigo-500 text-white outline-none transition-all placeholder:text-slate-500 shadow-inner"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
-                <div className="h-4 w-px bg-slate-200 mx-1"></div>
+                <div className="h-4 w-px bg-slate-700 mx-1"></div>
                 <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-slate-500">Industry:</span>
+                    <span className="text-xs font-medium text-slate-400">Industry:</span>
                     <select
-                        className="py-1.5 pl-2 pr-6 bg-white border border-slate-200 rounded text-xs focus:border-indigo-500 outline-none cursor-pointer"
+                        className="py-1.5 pl-2 pr-6 bg-slate-800 border border-slate-700 rounded text-xs text-white focus:border-indigo-500 outline-none cursor-pointer shadow-sm"
                         value={industryFilter}
                         onChange={(e) => setIndustryFilter(e.target.value)}
                     >
@@ -98,9 +98,9 @@ function CompaniesContent() {
                     </select>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-slate-500">Stage:</span>
+                    <span className="text-xs font-medium text-slate-400">Stage:</span>
                     <select
-                        className="py-1.5 pl-2 pr-6 bg-white border border-slate-200 rounded text-xs focus:border-indigo-500 outline-none cursor-pointer"
+                        className="py-1.5 pl-2 pr-6 bg-slate-800 border border-slate-700 rounded text-xs text-white focus:border-indigo-500 outline-none cursor-pointer shadow-sm"
                         value={stageFilter}
                         onChange={(e) => setStageFilter(e.target.value)}
                     >
@@ -108,9 +108,9 @@ function CompaniesContent() {
                     </select>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-slate-500">Location:</span>
+                    <span className="text-xs font-medium text-slate-400">Location:</span>
                     <select
-                        className="py-1.5 pl-2 pr-6 bg-white border border-slate-200 rounded text-xs focus:border-indigo-500 outline-none cursor-pointer max-w-[140px] truncate"
+                        className="py-1.5 pl-2 pr-6 bg-slate-800 border border-slate-700 rounded text-xs text-white focus:border-indigo-500 outline-none cursor-pointer max-w-[140px] truncate shadow-sm"
                         value={locationFilter}
                         onChange={(e) => setLocationFilter(e.target.value)}
                     >
@@ -125,7 +125,7 @@ function CompaniesContent() {
                             setIndustryFilter("All");
                             setLocationFilter("All");
                         }}
-                        className="text-xs text-indigo-600 font-medium hover:text-indigo-700 ml-auto px-2"
+                        className="text-xs text-indigo-400 font-medium hover:text-indigo-300 ml-auto px-2 transition-colors"
                     >
                         Clear Filters
                     </button>
@@ -133,9 +133,9 @@ function CompaniesContent() {
             </div>
 
             {/* Dense Data Grid */}
-            <div className="flex-1 bg-gradient-to-br from-white via-rose-50/40 to-orange-50/20 rounded-b-xl shadow-sm border border-t-0 border-rose-100/50">
+            <div className="flex-1 overflow-auto bg-gradient-to-br from-white via-rose-50/40 to-orange-50/20 rounded-b-xl shadow-sm border border-slate-200/50 mt-[-1px]">
                 <table className="w-full text-left border-collapse whitespace-nowrap">
-                    <thead className="bg-white/60 backdrop-blur-md border-b border-rose-200/60 shadow-sm">
+                    <thead className="sticky top-0 z-10 bg-white/60 backdrop-blur-md border-b border-rose-200/60 shadow-sm">
                         <tr className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                             <th className="px-4 py-2.5 w-6"></th>
                             <th className="px-4 py-2.5">Company</th>
