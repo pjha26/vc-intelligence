@@ -72,18 +72,18 @@ export default function ChatBot() {
 
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
-                {messages.map((message) => (
+                {messages.map((msg: any) => (
                     <div
-                        key={message.id}
-                        className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                        key={msg.id}
+                        className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                     >
                         <div
-                            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${message.role === "user"
+                            className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${msg.role === "user"
                                 ? "bg-indigo-600 text-white rounded-br-sm"
                                 : "bg-slate-800 text-slate-200 border border-slate-700/50 rounded-bl-sm"
                                 }`}
                         >
-                            {message.content}
+                            {msg.content}
                         </div>
                     </div>
                 ))}
@@ -111,7 +111,7 @@ export default function ChatBot() {
                     />
                     <button
                         type="submit"
-                        disabled={!input.trim() || isLoading}
+                        disabled={!input?.trim() || isLoading}
                         className="absolute right-2 p-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg transition-colors flex items-center justify-center"
                     >
                         <Send className="w-4 h-4 -ml-0.5" />
